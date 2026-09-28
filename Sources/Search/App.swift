@@ -613,6 +613,9 @@ struct ContentView: View {
             // there is to watch.
             .animation(browser.fieldShowing ? Motion.settle : Motion.quick, value: browser.fieldShowing)
             .background(WindowSetup { window = $0; dress($0) })
+            .onChange(of: browser.prefs.colourTheme) { _, _ in
+                window?.backgroundColor = Palette.NS.ground
+            }
             .onChange(of: browser.prefs.sidebar) { _, _ in
                 DispatchQueue.main.async { Lights.refresh(window); measureLights() }
             }

@@ -66,6 +66,13 @@ final class Preferences: ObservableObject {
             look.apply()
         }
     }
+    /// The tab bar, sidebar and panels share a tint; pages keep their own colours.
+    @Published var colourTheme: ColourTheme {
+        didSet {
+            store.set(colourTheme.rawValue, forKey: "colour.theme")
+            Palette.colourTheme = colourTheme
+        }
+    }
     /// Titles down a side instead of across the top.
     @Published var sidebar: Bool {
         didSet { store.set(sidebar, forKey: "sidebar") }
@@ -356,6 +363,9 @@ final class Preferences: ObservableObject {
         }
         let chosen = store.string(forKey: "look").flatMap(Look.init) ?? .system
         look = chosen
+        let theme = store.string(forKey: "colour.theme").flatMap(ColourTheme.init(rawValue:)) ?? .neutral
+        colourTheme = theme
+        Palette.colourTheme = theme
         // Before the first window, and not deferred: the window that is about
         // to be made should be made in the right appearance. Through `shared`
         // rather than `NSApp`: on macOS 14 SwiftUI builds this before it has

@@ -1,5 +1,6 @@
 import SwiftUI
 import AppKit
+import Observation
 
 // Lifted from Office Inspiration, with the ground turned white: there the work
 // floats on an off-white canvas, here the page *is* the ground and everything
@@ -8,35 +9,49 @@ import AppKit
 // Every colour is a pair — one for a light window, one for a dark — and
 // resolves itself against whatever appearance the window has. The window
 // takes its appearance from the app, and the app from Settings › Appearance:
-// light, dark, or whatever the Mac is doing. Nothing else in the code knows
-// which it is.
+// light, dark, or whatever the Mac is doing. A colour theme tints the chrome
+// independently, through the same palette every tab and panel already uses.
 enum Palette {
-    static let ground = Color(nsColor: NS.ground)
+    // Observation reaches the small views that only read the palette, such
+    // as a panel's Card, without each needing its own preferences relay.
+    @Observable fileprivate final class Selection {
+        var theme: ColourTheme = .neutral
+    }
+    private static let selection = Selection()
+
+    static var colourTheme: ColourTheme {
+        get { selection.theme }
+        set { selection.theme = newValue }
+    }
+
+    static var ground: Color { Color(nsColor: NS.ground) }
     static let ink = Color(nsColor: NS.ink)             // neutral-900 · neutral-100
-    static let muted = Color(nsColor: NS.muted)         // neutral-500
+    static var muted: Color { Color(nsColor: NS.muted) }
     static let faint = Color(nsColor: NS.faint)         // neutral-300 · neutral-700
-    static let hairline = Color(nsColor: NS.hairline)   // neutral-200 · neutral-800
-    static let wash = Color(nsColor: NS.wash)           // the live tab
+    static var hairline: Color { Color(nsColor: NS.hairline) }
+    static var wash: Color { Color(nsColor: NS.wash) }   // the live tab
     /// The live pin: among squares that already wear a faint grey, the one
     /// you are on stands out from them as a live row does from the white.
-    static let pinLive = Color(nsColor: NS.pinLive)
-    static let hover = Color(nsColor: NS.hover)         // the one under the pointer
-    /// The only two that aren't grey: a connection nobody can read on the
-    /// way, and one anybody can (see SiteCard.swift).
+    static var pinLive: Color { Color(nsColor: NS.pinLive) }
+    static var hover: Color { Color(nsColor: NS.hover) } // the one under the pointer
+    /// Connection status keeps its own green or amber, in every theme
+    /// (see SiteCard.swift).
     static let safe = Color(nsColor: NS.safe)           // green-700 · green-400
     static let unsafe = Color(nsColor: NS.unsafe)       // amber-700 · amber-400
 
     /// The same colours for the AppKit corners of the app — a text field's
     /// ink, a window's background — which want an NSColor and keep it.
     enum NS {
-        static let ground = pair(1.0, 0.11)
+        static var ground: NSColor { colourTheme.surface(light: 1.0, dark: 0.11) }
         static let ink = pair(0.09, 0.93)
-        static let muted = pair(0.55, 0.58)
+        // A little more contrast over a coloured surface; the default keeps
+        // exactly the greys the browser had before themes were offered.
+        static var muted: NSColor { colourTheme == .neutral ? pair(0.55, 0.58) : pair(0.42, 0.76) }
         static let faint = pair(0.83, 0.32)
-        static let hairline = pair(0.91, 0.20)
-        static let wash = pair(0.937, 0.175)
-        static let pinLive = pair(0.90, 0.21)
-        static let hover = pair(0.965, 0.15)
+        static var hairline: NSColor { colourTheme.surface(light: 0.91, dark: 0.20) }
+        static var wash: NSColor { colourTheme.surface(light: 0.937, dark: 0.175) }
+        static var pinLive: NSColor { colourTheme.surface(light: 0.90, dark: 0.21) }
+        static var hover: NSColor { colourTheme.surface(light: 0.965, dark: 0.15) }
         /// The resting traffic lights, drawn by hand when the app is behind.
         static let resting = pair(0.80, 0.30)
         static let safe = tint(light: (0.08, 0.50, 0.24), dark: (0.29, 0.87, 0.50))
@@ -58,7 +73,7 @@ enum Palette {
     }
 }
 
-/// Light, dark, or the Mac's own — the one choice that colours everything.
+/// Light, dark, or the Mac's own, for both the chrome and the pages.
 enum Look: String, CaseIterable, Identifiable {
     case light, dark, system
 

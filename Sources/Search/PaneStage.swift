@@ -34,6 +34,7 @@ struct PaneStageView: NSViewRepresentable {
         stage.onAction = action
         stage.onHover = hover
         stage.show(tabs, split: split, focused: focused)
+        stage.needsDisplay = true
     }
 }
 
