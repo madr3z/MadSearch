@@ -1,12 +1,16 @@
 # Search
 
-A small, fast, quiet web browser for the Mac, by [Office Commun](https://officecommun.com).
+A small, fast, quiet web browser for the Mac.
+
+This is **my take on Search**, maintained by [madrez](https://github.com/madr3z). It's a personal fork of [the original Search project](https://github.com/driceroland/Search), created by [Office Commun](https://officecommun.com). The original project and its contributors provide the foundation; changes here reflect my own preferences.
 
 ![Search, with its tabs down the left and a page taking the rest of the window](.github/screenshot.png)
 
-**[Download for macOS →](https://officecommun.com/search)** · macOS 14 or later · free · about 6 MB
+**[Download the upstream release for macOS →](https://officecommun.com/search)** · macOS 14 or later · free · about 6 MB
 
-Or with [Homebrew](https://brew.sh): `brew install --cask driceroland/tap/search`
+Or install the upstream release with [Homebrew](https://brew.sh): `brew install --cask driceroland/tap/search`
+
+To run this fork, [build it from source](#building-it).
 
 ---
 
@@ -16,7 +20,7 @@ Search is a browser with nothing in the way. A row of tabs — across the top or
 
 It uses **WebKit**, the engine already inside every Mac (it is what Safari runs on). That is why the whole app is about 3 MB on disk and opens instantly: there is no second copy of Chromium to download, update and keep in memory.
 
-It was built by a design studio that spends its whole day in a browser and was tired of the ones that had become products. This one is a tool.
+The original Search was built by a design studio that spends its whole day in a browser and was tired of the ones that had become products. This one is a tool.
 
 ## What it does
 
@@ -31,7 +35,7 @@ It was built by a design studio that spends its whole day in a browser and was t
 - **Light, dark, or the Mac's own.** The frame and the pages follow.
 - **Bookmarks, history, downloads** — each a panel, each searchable, each one keystroke away.
 - **Chrome extensions, without Chrome.** Paste a Chrome Web Store link in Settings › Extensions, or open the extension's page in Search and press Add. It runs on WebKit's own extension engine — the one Safari uses — and where Chrome has APIs WebKit doesn't (bookmarks, history, downloads, side panel, offscreen documents, fonts, notifications, speech, OAuth sign-in), Search fills them in itself. They live behind the puzzle button; pin the ones you use often. Building your own? Load its folder as an unpacked extension and press Reload after each change, as in Chrome's developer mode. macOS 15.4 or later.
-- **Updates itself, quietly.** Once a day it checks for a newer build, downloads it, verifies it is signed by Office Commun, and swaps it in for the next launch. Nothing restarts on its own.
+- **Quiet updates in upstream releases.** Once a day it checks for a newer build, downloads it, verifies it is signed by Office Commun, and swaps it in for the next launch. Nothing restarts on its own. The updater still points to Office Commun's releases; this fork is built from source.
 
 ## What it doesn't do
 
@@ -118,7 +122,7 @@ Bench tabs are never selected for you, never enter the session or the history, a
 
 ### Contributing
 
-Issues and pull requests are genuinely welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for how this is reviewed and what tends to get merged. The short version: small changes, no new dependencies, nothing that phones home. Found a security problem? Please report it privately, as [SECURITY.md](SECURITY.md) says.
+Issues and pull requests for this fork are welcome at [madr3z/MadSearch](https://github.com/madr3z/MadSearch) — see [CONTRIBUTING.md](CONTRIBUTING.md) for how this is reviewed and what tends to get merged. The short version: small changes, no new dependencies, nothing that phones home. For security problems affecting the upstream project, see its reporting policy in [SECURITY.md](SECURITY.md).
 
 ### License
 

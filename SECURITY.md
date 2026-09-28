@@ -1,5 +1,9 @@
 # Security
 
+This repository is [madrez's personal fork of Search](https://github.com/madr3z/MadSearch).
+The policy below is inherited from [upstream Search](https://github.com/driceroland/Search);
+its reporting contacts, maintainers and release expectations refer to Office Commun's project.
+
 Search handles your passwords, your history and every page you open, so a
 hole in it matters more than most bugs. If you find one, please tell us
 privately first.

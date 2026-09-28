@@ -1,20 +1,17 @@
 # Roadmap
 
-Every idea and every report about Search, in one place: what is being built
-right now, what goes out with the next version, what comes after, and what
-is not on the list — each with where it came from. GitHub issues, pull
-requests, the emails that reach hello@officecommun.com and the replies on X
-all land here.
+This file is inherited from [upstream Search](https://github.com/driceroland/Search)
+and kept as a reference for madrez's personal fork. The status labels, links
+and workflow below describe upstream work at the time of the fork.
 
-**The live version is [officecommun.com/search/roadmap](https://officecommun.com/search/roadmap)**:
-it changes the moment the work does. This file is a copy of the same list,
-written by `./ideas md`. What has shipped is in [CHANGELOG.md](CHANGELOG.md).
+The upstream project's current roadmap is at
+[officecommun.com/search/roadmap](https://officecommun.com/search/roadmap).
+Changes recorded for this fork are in [CHANGELOG.md](CHANGELOG.md).
 
-Want something that isn't here? [Open an issue](https://github.com/driceroland/Search/issues).
-Want to build something that is? Say so on its issue first, so two people
-don't build it twice.
+For ideas or changes to my take on Search,
+[open an issue in this fork](https://github.com/madr3z/MadSearch/issues).
 
-## Keeping it whole
+## Upstream roadmap workflow
 
 The list is only worth something if nothing is missing from it and nothing
 in it is stale. Whoever works on Search keeps it that way, with `./ideas`
