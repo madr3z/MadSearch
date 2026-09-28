@@ -2,6 +2,10 @@
 
 What changes in Search from one version to the next, newest first.
 
+This changelog is maintained for [madrez's personal fork](https://github.com/madr3z/MadSearch)
+and retains the upstream release history. Links to `driceroland/Search`
+refer to the original project's issues and contributions.
+
 **Unreleased** gathers what is done since the last version, as it lands:
 every fix and every addition gets its line the day it is merged. When a
 version ships, the section takes its number and date, its gist becomes the

@@ -1,10 +1,10 @@
 # Contributing
 
-This is a small, mostly-solo project, reviewed the same way it's written. Contributions are welcome, but a few things make one land faster.
+These guidelines apply to [madrez's personal fork of Search](https://github.com/madr3z/MadSearch), based on [Office Commun's original project](https://github.com/driceroland/Search). Contributions are welcome; keep changes small and focused.
 
 ## Before writing code
 
-For anything beyond a small fix, open an issue first describing what you want to change and why. It saves a rewritten pull request later if the direction doesn't fit.
+For anything beyond a small fix, [open an issue in this fork](https://github.com/madr3z/MadSearch/issues) first describing what you want to change and why. It saves a rewritten pull request later if the direction doesn't fit.
 
 ## New features: off until someone turns them on
 
@@ -19,8 +19,9 @@ Fixes and things every browser is expected to do (Tab moving between a form's fi
 
 ## Where things are tracked
 
-- [ROADMAP.md](ROADMAP.md), live at [officecommun.com/search/roadmap](https://officecommun.com/search/roadmap): every idea and report, from issues, pull requests, emails and X, with where it stands — being built, in the next version, next, or not planned. Maintainers keep it with `./ideas`.
-- [CHANGELOG.md](CHANGELOG.md): what has changed since the last version. A pull request that fixes or adds something also adds its line under **Unreleased** (and takes its item off the roadmap), so the next update's notes write themselves.
+- [This fork's issues](https://github.com/madr3z/MadSearch/issues): ideas, bug reports and proposed changes for my take on Search.
+- [ROADMAP.md](ROADMAP.md): the inherited upstream roadmap, kept as a reference. The upstream project's current plans are at [officecommun.com/search/roadmap](https://officecommun.com/search/roadmap).
+- [CHANGELOG.md](CHANGELOG.md): fork additions alongside the inherited upstream history. A pull request that fixes or adds something also adds its line under **Unreleased** and identifies it as a fork change.
 
 ## What tends to get merged
 
@@ -38,8 +39,8 @@ Fixes and things every browser is expected to do (Tab moving between a form's fi
 
 ## Review
 
-Pull requests are reviewed by Drice, usually with Claude Code doing a first pass on the diff before a human look. That means a review can be fast even when nobody's watching the repo in real time, but it isn't a guarantee of a same-day answer — this isn't anyone's full-time job. Pinging a stale PR after a couple of weeks is completely fine.
+Pull requests to this fork are reviewed by madrez. Explain what changed and why, and keep each pull request focused on one thing.
 
 ## Reporting a bug
 
-Open an issue with: what you did, what you expected, what happened instead, and your macOS version. A crash log, if there is one, lives at `~/Library/Application Support/Search/crash.log` — it only ever stays on your Mac unless you paste it into the issue yourself.
+[Open an issue in this fork](https://github.com/madr3z/MadSearch/issues) with: what you did, what you expected, what happened instead, and your macOS version. A crash log, if there is one, lives at `~/Library/Application Support/Search/crash.log` — it only ever stays on your Mac unless you paste it into the issue yourself.
