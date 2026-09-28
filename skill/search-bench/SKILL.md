@@ -95,6 +95,7 @@ id=$(./bench --test open https://example.com)
 | `settings` `passwords` `welcome` `history` `downloads` `bookmarks` `hidden` `sidebar` `extensions` | `on` or `off` |
 | `side` | `left` or `right` |
 | `look` | `light`, `dark`, or `system` |
+| `colourTheme` | `#RRGGBB` or `neutral` (test worlds only) |
 
 `extensions on` opens the puzzle-button menu. `ext-menu PATH` writes that menu to a PNG. `look`, `sidebar`, and `side` are remembered.
 

@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 /// Everything there is to set. Pages down the left, one page at a time on
 /// the right, each a short list of lines with a hairline between them —
@@ -17,11 +18,12 @@ struct SettingsPanel: View {
     @State private var page: Page = Page(rawValue: Store.settings.string(forKey: "settings.page") ?? "") ?? .general
 
     enum Page: String, CaseIterable, Identifiable {
-        case general, tabs, shortcuts, extensions, passwords, downloads, privacy, ai, about
+        case general, appearance, tabs, shortcuts, extensions, passwords, downloads, privacy, ai, about
         var id: String { rawValue }
         var title: String {
             switch self {
             case .general: return "General"
+            case .appearance: return "Appearance"
             case .tabs: return "Tabs"
             case .shortcuts: return "Shortcuts"
             case .extensions: return "Extensions"
@@ -35,6 +37,7 @@ struct SettingsPanel: View {
         var icon: String {
             switch self {
             case .general: return "macwindow"
+            case .appearance: return "paintpalette"
             case .tabs: return "rectangle.split.3x1"
             case .shortcuts: return "keyboard"
             case .extensions: return "puzzlepiece.extension"
@@ -138,6 +141,7 @@ struct SettingsPanel: View {
                 VStack(alignment: .leading, spacing: 18) {
                     switch page {
                     case .general: general
+                    case .appearance: appearance
                     case .tabs:
                         tabs
                         if !prefs.sidebar { toolbar }
@@ -281,10 +285,6 @@ struct SettingsPanel: View {
                 .padding(.bottom, 6)
             }
             Rule()
-            Line("Appearance", "Light, dark, or whatever the Mac is doing — pages follow it too") {
-                Segmented(options: Look.allCases.map { ($0, $0.title) }, selection: $prefs.look)
-            }
-            Rule()
             Line("Page zoom", "Where every site starts. ⌘+ and ⌘− are still remembered for each site.") {
                 // The number itself takes it back to 100%.
                 Steps(stops: Preferences.zooms, value: $prefs.pageZoom, home: 1) { "\(Int(($0 * 100).rounded()))%" }
@@ -376,6 +376,30 @@ struct SettingsPanel: View {
             return "An http or https address with %s where the words go. Until then, Google"
         }
         return "Words go to \(prefs.engine.name(custom: prefs.customEngine))"
+    }
+
+    // MARK: - appearance
+
+    private var appearance: some View {
+        Card {
+            Line("Appearance", "Light, dark, or whatever the Mac is doing — pages follow it too") {
+                Segmented(options: Look.allCases.map { ($0, $0.title) }, selection: $prefs.look)
+            }
+            Rule()
+            Line("Colour theme", "Choose a colour for the tab bar, sidebar and panels, in light or dark") {
+                HStack(spacing: 8) {
+                    ColorPicker("Colour theme", selection: Binding(
+                        get: { prefs.colourTheme.colour },
+                        set: { colour in
+                            if let theme = ColourTheme(colour: NSColor(colour)) { prefs.colourTheme = theme }
+                        }
+                    ), supportsOpacity: false)
+                    .labelsHidden()
+                    Pill("Reset") { prefs.colourTheme = .neutral }
+                        .disabled(prefs.colourTheme == .neutral)
+                }
+            }
+        }
     }
 
     // MARK: - tabs

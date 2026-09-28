@@ -13,6 +13,7 @@ in [ROADMAP.md](ROADMAP.md).
 
 ### Added
 
+- **Fork addition:** Pick any colour with the colour picker in Settings › Appearance, beside Light, Dark and System. The tab bar, sidebar and panels share it, it adapts to light or dark, and the choice is kept after a restart. Reset returns to the default greys. ([Upstream #396](https://github.com/driceroland/Search/issues/396))
 - The ⌃Tab switcher takes the pointer: resting on a card picks it once the pointer has moved, and a click takes it, ⌃ held or not; a click outside puts the switcher away. Thanks [@oddharsh](https://github.com/oddharsh) ([#358](https://github.com/driceroland/Search/pull/358))
 - Search a site from the address field, as in Arc: type the start of a site's name, like red or yout, press Tab, and what you type next searches that site. Reddit, YouTube, X, ChatGPT, Claude, Perplexity, Wikipedia, GitHub and a few others come built in, and a site you visit that says where its search is joins them by itself. Your own site shortcuts work as before. Off unless you turn it on in Settings › General › Search a site from the address field
 - Search can start with a fresh window: your pinned tabs are there and last time's other tabs aren't. Off unless you turn it on in Settings › General › Start with a fresh window ([#406](https://github.com/driceroland/Search/issues/406))

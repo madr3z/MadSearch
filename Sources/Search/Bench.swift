@@ -610,6 +610,7 @@ final class Bench {
                 "offering": browser.offering != nil,
                 "modal": NSApp.modalWindow.map { "\(type(of: $0)) “\($0.title)”" } ?? "",
                 "look": browser.prefs.look.rawValue,
+                "colourTheme": browser.prefs.colourTheme.rawValue,
                 "sidebar": browser.prefs.sidebar,
                 "sidePosition": browser.prefs.sidePosition.rawValue,
                 "sideWidth": Double(browser.prefs.sideWidth),
@@ -2284,6 +2285,13 @@ final class Bench {
             }
             if let on = request["hidden"] as? Bool { browser.reviewing = on }
             if let look = (request["look"] as? String).flatMap(Look.init) { browser.prefs.look = look }
+            if let value = request["colourTheme"] as? String {
+                guard Store.testing, let theme = ColourTheme(rawValue: value) else {
+                    answer(["error": "colourTheme needs #RRGGBB or neutral on a test run"])
+                    return
+                }
+                browser.prefs.colourTheme = theme
+            }
             if let side = request["side"] as? String {
                 guard let position = SidebarPosition(rawValue: side) else {
                     answer(["error": "side needs left or right"])
